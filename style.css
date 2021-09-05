@@ -1,0 +1,37 @@
+body {
+    background-color: darkslategrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin-top: 100px;
+    flex-direction: column;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.game-window {
+    width: 640px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px white solid;
+    padding: 0 10px 0 10px;
+}
+
+.maze-window {
+    width: 460px;
+    height:460px;
+    border: white 2px solid;
+}
+
+.side-window {
+    width: 240px;
+    height: 460px;
+    border: white 2px solid;
+    justify-self:right;
+    margin-left: 10px;
+    
+}
