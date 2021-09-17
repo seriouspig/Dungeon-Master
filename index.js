@@ -10,21 +10,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const imagesClose = [ "wall", "turn", "closed" ]
     const mazeArr = [
-        [1,1,1,1,1,1,1,1,1,1],
-        [1,0,0,0,1,0,0,0,0,1],
-        [1,0,1,0,0,0,1,1,0,1],
-        [1,0,0,0,1,0,1,1,0,1],
-        [1,1,0,1,1,0,0,0,0,1],
-        [1,1,0,1,1,0,1,1,0,1],
-        [1,1,0,0,0,0,1,1,0,1],
-        [1,1,1,1,1,0,1,1,0,1],
-        [1,1,1,0,0,0,0,0,0,1],
-        [1,1,1,0,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,1,0,0,0,1,0,0,0,0,1,1],
+        [1,1,0,1,0,0,0,1,1,0,1,1],
+        [1,1,0,0,0,1,0,1,1,0,1,1],
+        [1,1,1,0,1,1,0,0,0,0,1,1],
+        [1,1,1,0,1,1,0,1,1,0,1,1],
+        [1,1,1,0,0,0,0,1,1,0,1,1],
+        [1,1,1,1,1,1,0,1,1,0,1,1],
+        [1,1,1,1,0,0,0,0,0,0,1,1],
+        [1,1,1,1,0,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1]
     ]
 
     let mazeBlocks = []
-    let playerY = 9
-    let playerX = 3
+    let playerY = 10
+    let playerX = 4
     let playerPos = [playerX, playerY]
     const directions = ['N', 'E', 'S', 'W']
     let playerDir = directions[0]
@@ -58,24 +60,62 @@ document.addEventListener('DOMContentLoaded', () => {
     function mapPlayerFront() {
         if(playerDir == "N") {
             mazeBlocks[playerPos[1]-1][playerPos[0]].classList.add('map-player-front')
+            mazeBlocks[playerPos[1]-2][playerPos[0]].classList.add('map-player-front-2')
+            mazeBlocks[playerPos[1]][playerPos[0]-1].classList.add('map-player-left-1')
+            mazeBlocks[playerPos[1]-1][playerPos[0]-1].classList.add('map-player-left-2')
+            mazeBlocks[playerPos[1]-2][playerPos[0]-1].classList.add('map-player-left-3')
+            mazeBlocks[playerPos[1]][playerPos[0]+1].classList.add('map-player-right-1')
+            mazeBlocks[playerPos[1]-1][playerPos[0]+1].classList.add('map-player-right-2')
+            mazeBlocks[playerPos[1]-2][playerPos[0]+1].classList.add('map-player-right-3')
         } else if (playerDir == "E") {
             mazeBlocks[playerPos[1]][playerPos[0]+1].classList.add('map-player-front')
+            mazeBlocks[playerPos[1]][playerPos[0]+2].classList.add('map-player-front-2')
+            mazeBlocks[playerPos[1]-1][playerPos[0]].classList.add('map-player-left-1')
+            mazeBlocks[playerPos[1]-1][playerPos[0]+1].classList.add('map-player-left-2')
+            mazeBlocks[playerPos[1]-1][playerPos[0]+2].classList.add('map-player-left-3')
         } else if (playerDir == "S") {
             mazeBlocks[playerPos[1]+1][playerPos[0]].classList.add('map-player-front')
+            mazeBlocks[playerPos[1]+2][playerPos[0]].classList.add('map-player-front-2')
+            mazeBlocks[playerPos[1]][playerPos[0]+1].classList.add('map-player-left-1')
+            mazeBlocks[playerPos[1]+1][playerPos[0]+1].classList.add('map-player-left-2')
+            mazeBlocks[playerPos[1]+2][playerPos[0]+1].classList.add('map-player-left-3')
         } else if (playerDir == "W") {
             mazeBlocks[playerPos[1]][playerPos[0]-1].classList.add('map-player-front')
+            mazeBlocks[playerPos[1]][playerPos[0]-2].classList.add('map-player-front-2')
+            mazeBlocks[playerPos[1]+1][playerPos[0]].classList.add('map-player-left-1')
+            mazeBlocks[playerPos[1]+1][playerPos[0]-1].classList.add('map-player-left-2')
+            mazeBlocks[playerPos[1]+1][playerPos[0]-2].classList.add('map-player-left-3')
         }        
     }
 
     function removePlayerFront() {
         if(playerDir == "N") {
             mazeBlocks[playerPos[1]-1][playerPos[0]].classList.remove('map-player-front')
+            mazeBlocks[playerPos[1]-2][playerPos[0]].classList.remove('map-player-front-2')
+            mazeBlocks[playerPos[1]][playerPos[0]-1].classList.remove('map-player-left-1')
+            mazeBlocks[playerPos[1]-1][playerPos[0]-1].classList.remove('map-player-left-2')
+            mazeBlocks[playerPos[1]-2][playerPos[0]-1].classList.remove('map-player-left-3')
+            mazeBlocks[playerPos[1]][playerPos[0]+1].classList.remove('map-player-right-1')
+            mazeBlocks[playerPos[1]-1][playerPos[0]+1].classList.remove('map-player-right-2')
+            mazeBlocks[playerPos[1]-2][playerPos[0]+1].classList.remove('map-player-right-3')
         } else if (playerDir == "E") {
             mazeBlocks[playerPos[1]][playerPos[0]+1].classList.remove('map-player-front')
+            mazeBlocks[playerPos[1]][playerPos[0]+2].classList.remove('map-player-front-2')
+            mazeBlocks[playerPos[1]-1][playerPos[0]].classList.remove('map-player-left-1')
+            mazeBlocks[playerPos[1]-1][playerPos[0]+1].classList.remove('map-player-left-2')
+            mazeBlocks[playerPos[1]-1][playerPos[0]+2].classList.remove('map-player-left-3')
         } else if (playerDir == "S") {
             mazeBlocks[playerPos[1]+1][playerPos[0]].classList.remove('map-player-front')
+            mazeBlocks[playerPos[1]+2][playerPos[0]].classList.remove('map-player-front-2')
+            mazeBlocks[playerPos[1]][playerPos[0]+1].classList.remove('map-player-left-1')
+            mazeBlocks[playerPos[1]+1][playerPos[0]+1].classList.remove('map-player-left-2')
+            mazeBlocks[playerPos[1]+2][playerPos[0]+1].classList.remove('map-player-left-3')
         } else if (playerDir == "W") {
             mazeBlocks[playerPos[1]][playerPos[0]-1].classList.remove('map-player-front')
+            mazeBlocks[playerPos[1]][playerPos[0]-2].classList.remove('map-player-front-2')
+            mazeBlocks[playerPos[1]+1][playerPos[0]].classList.remove('map-player-left-1')
+            mazeBlocks[playerPos[1]+1][playerPos[0]-1].classList.remove('map-player-left-2')
+            mazeBlocks[playerPos[1]+1][playerPos[0]-2].classList.remove('map-player-left-3')
         }     
     }
 

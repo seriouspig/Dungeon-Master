@@ -96,8 +96,8 @@ body {
 
 .map {
     margin-top: 20px;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     display: flex;
     flex-wrap: wrap;
     background-color: thistle;
@@ -125,6 +125,48 @@ body {
     width: 10px;
     height: 10px;
     background-color: yellow;
+}
+
+.map-player-front-2 {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(255, 145, 0);
+}
+
+.map-player-left-1 {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(0, 255, 0);
+}
+
+.map-player-left-2 {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(0, 184, 0);
+}
+
+.map-player-left-3 {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(0, 130, 0);
+}
+
+.map-player-right-1 {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(255, 0, 157);
+}
+
+.map-player-right-2 {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(177, 0, 109);
+}
+
+.map-player-right-3 {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(118, 0, 72);
 }
 
 
