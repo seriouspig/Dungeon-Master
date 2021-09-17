@@ -26,6 +26,7 @@ body {
     height:460px;
     border: white 2px solid;
     display: flex;
+    position: relative;
 }
 
 .side-window {
@@ -90,7 +91,64 @@ body {
     transform: rotate(90deg);
 }
 
-.right-side > img{
+.left-side {
+    position: relative;
+}
+
+.left-side .medium {
+    position: absolute;
+    left: 48px;
+    top: 48px;
+}
+
+.left-side .far {
+    position: absolute;
+    left: 138px;
+    top: 138px;
+}
+
+.left-side .far > img{
+    width: 94px;
+}
+
+.left-side .medium > img {
+    width: 182px;
+} 
+
+.right-side .medium {
+    position: absolute;
+    left: 230px;
+    top: 48px;
+}
+
+.right-side .medium > img {
+    width: 182px;
+    transform: scale(-1,1);
+} 
+
+.left-side .close {
+    z-index: 9999;
+}
+
+.left-side .close > img {
+    width: 230px;
+    z-index: 9999;
+}
+
+.right-side .close > img {
+    width: 230px;
+    transform: scale(-1,1);
+    
+}
+
+.right-side .far {
+    position: absolute;
+    left: 232px;
+    top: 138px;
+}
+
+.right-side .far > img{
+    width: 94px;
     transform: scale(-1,1);
 }
 

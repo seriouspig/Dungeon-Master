@@ -7,6 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const rightBtn = document.querySelector('.right')
     const turnLeftBtn = document.querySelector('.turnLeft')
     const turnRightBtn = document.querySelector('.turnRight')
+    const imageLeft1 = document.getElementById("left_1")
+    const imageLeft2 = document.getElementById("left_2")
+    const imageLeft3 = document.getElementById("left_3")
+    const imageRight1 = document.getElementById("right_1")
+    const imageRight2 = document.getElementById("right_2")
+    const imageRight3 = document.getElementById("right_3")
 
     const imagesClose = [ "wall", "turn", "closed" ]
     const mazeArr = [
@@ -60,31 +66,69 @@ document.addEventListener('DOMContentLoaded', () => {
     function mapPlayerFront() {
         if(playerDir == "N") {
             mazeBlocks[playerPos[1]-1][playerPos[0]].classList.add('map-player-front')
+            
             mazeBlocks[playerPos[1]-2][playerPos[0]].classList.add('map-player-front-2')
             mazeBlocks[playerPos[1]][playerPos[0]-1].classList.add('map-player-left-1')
+            mazeBlocks[playerPos[1]][playerPos[0]-1].classList.contains('map-wall') ? imageLeft1.src = "images/1_closed.png" : imageLeft1.src = "images/1_open.png"
             mazeBlocks[playerPos[1]-1][playerPos[0]-1].classList.add('map-player-left-2')
+            mazeBlocks[playerPos[1]-1][playerPos[0]-1].classList.contains('map-wall') ? imageLeft2.src = "images/2_closed.png" : imageLeft2.src = "images/2_open.png"
             mazeBlocks[playerPos[1]-2][playerPos[0]-1].classList.add('map-player-left-3')
+            mazeBlocks[playerPos[1]-2][playerPos[0]-1].classList.contains('map-wall') ? imageLeft3.src = "images/3_closed.png" : imageLeft3.src = "images/3_open.png"
             mazeBlocks[playerPos[1]][playerPos[0]+1].classList.add('map-player-right-1')
+            mazeBlocks[playerPos[1]][playerPos[0]+1].classList.contains('map-wall') ? imageRight1.src = "images/1_closed.png" : imageRight1.src = "images/1_open.png"
             mazeBlocks[playerPos[1]-1][playerPos[0]+1].classList.add('map-player-right-2')
+            mazeBlocks[playerPos[1]-1][playerPos[0]+1].classList.contains('map-wall') ? imageRight2.src = "images/2_closed.png" : imageRight2.src = "images/2_open.png"
             mazeBlocks[playerPos[1]-2][playerPos[0]+1].classList.add('map-player-right-3')
+            mazeBlocks[playerPos[1]-2][playerPos[0]+1].classList.contains('map-wall') ? imageRight3.src = "images/3_closed.png" : imageRight3.src = "images/3_open.png"
+            if (mazeBlocks[playerPos[1]-1][playerPos[0]].classList.contains('map-wall')) {
+                imageLeft1.src = "images/1_wall.png";
+                imageRight1.src = "images/1_wall.png";
+            }
         } else if (playerDir == "E") {
             mazeBlocks[playerPos[1]][playerPos[0]+1].classList.add('map-player-front')
             mazeBlocks[playerPos[1]][playerPos[0]+2].classList.add('map-player-front-2')
             mazeBlocks[playerPos[1]-1][playerPos[0]].classList.add('map-player-left-1')
+            mazeBlocks[playerPos[1]-1][playerPos[0]].classList.contains('map-wall') ? imageLeft1.src = "images/1_closed.png" : imageLeft1.src = "images/1_open.png"
             mazeBlocks[playerPos[1]-1][playerPos[0]+1].classList.add('map-player-left-2')
+            mazeBlocks[playerPos[1]-1][playerPos[0]+1].classList.contains('map-wall') ? imageLeft2.src = "images/2_closed.png" : imageLeft2.src = "images/2_open.png"
             mazeBlocks[playerPos[1]-1][playerPos[0]+2].classList.add('map-player-left-3')
+            mazeBlocks[playerPos[1]-1][playerPos[0]+1].classList.contains('map-wall') ? imageLeft3.src = "images/3_closed.png" : imageLeft3.src = "images/3_open.png"
+            mazeBlocks[playerPos[1]+1][playerPos[0]].classList.add('map-player-right-1')
+            mazeBlocks[playerPos[1]+1][playerPos[0]].classList.contains('map-wall') ? imageRight1.src = "images/1_closed.png" : imageRight1.src = "images/1_open.png"
+            mazeBlocks[playerPos[1]+1][playerPos[0]+1].classList.add('map-player-right-2')
+            mazeBlocks[playerPos[1]+1][playerPos[0]+1].classList.contains('map-wall') ? imageRight2.src = "images/2_closed.png" : imageRight2.src = "images/2_open.png"
+            mazeBlocks[playerPos[1]+1][playerPos[0]+2].classList.add('map-player-right-3')
+            mazeBlocks[playerPos[1]+1][playerPos[0]+2].classList.contains('map-wall') ? imageRight3.src = "images/3_closed.png" : imageRight3.src = "images/3_open.png"
         } else if (playerDir == "S") {
             mazeBlocks[playerPos[1]+1][playerPos[0]].classList.add('map-player-front')
             mazeBlocks[playerPos[1]+2][playerPos[0]].classList.add('map-player-front-2')
             mazeBlocks[playerPos[1]][playerPos[0]+1].classList.add('map-player-left-1')
+            mazeBlocks[playerPos[1]][playerPos[0]+1].classList.contains('map-wall') ? imageLeft1.src = "images/1_closed.png" : imageLeft1.src = "images/1_open.png"
             mazeBlocks[playerPos[1]+1][playerPos[0]+1].classList.add('map-player-left-2')
+            mazeBlocks[playerPos[1]+1][playerPos[0]+1].classList.contains('map-wall') ? imageLeft2.src = "images/2_closed.png" : imageLeft2.src = "images/2_open.png"
             mazeBlocks[playerPos[1]+2][playerPos[0]+1].classList.add('map-player-left-3')
+            mazeBlocks[playerPos[1]+2][playerPos[0]+1].classList.contains('map-wall') ? imageLeft3.src = "images/3_closed.png" : imageLeft3.src = "images/3_open.png"
+            mazeBlocks[playerPos[1]][playerPos[0]-1].classList.add('map-player-right-1')
+            mazeBlocks[playerPos[1]][playerPos[0]-1].classList.contains('map-wall') ? imageRight1.src = "images/1_closed.png" : imageRight1.src = "images/1_open.png"
+            mazeBlocks[playerPos[1]+1][playerPos[0]-1].classList.add('map-player-right-2')
+            mazeBlocks[playerPos[1]+1][playerPos[0]-1].classList.contains('map-wall') ? imageRight2.src = "images/2_closed.png" : imageRight2.src = "images/2_open.png"
+            mazeBlocks[playerPos[1]+2][playerPos[0]-1].classList.add('map-player-right-3')
+            mazeBlocks[playerPos[1]+2][playerPos[0]-1].classList.contains('map-wall') ? imageRight3.src = "images/3_closed.png" : imageRight3.src = "images/3_open.png"
         } else if (playerDir == "W") {
             mazeBlocks[playerPos[1]][playerPos[0]-1].classList.add('map-player-front')
             mazeBlocks[playerPos[1]][playerPos[0]-2].classList.add('map-player-front-2')
             mazeBlocks[playerPos[1]+1][playerPos[0]].classList.add('map-player-left-1')
+            mazeBlocks[playerPos[1]+1][playerPos[0]].classList.contains('map-wall') ? imageLeft1.src = "images/1_closed.png" : imageLeft1.src = "images/1_open.png"
             mazeBlocks[playerPos[1]+1][playerPos[0]-1].classList.add('map-player-left-2')
+            mazeBlocks[playerPos[1]+1][playerPos[0]-1].classList.contains('map-wall') ? imageLeft2.src = "images/2_closed.png" : imageLeft2.src = "images/2_open.png"
             mazeBlocks[playerPos[1]+1][playerPos[0]-2].classList.add('map-player-left-3')
+            mazeBlocks[playerPos[1]+1][playerPos[0]-2].classList.contains('map-wall') ? imageLeft3.src = "images/3_closed.png" : imageLeft3.src = "images/3_open.png"
+            mazeBlocks[playerPos[1]-1][playerPos[0]].classList.add('map-player-right-1')
+            mazeBlocks[playerPos[1]-1][playerPos[0]].classList.contains('map-wall') ? imageRight1.src = "images/1_closed.png" : imageRight1.src = "images/1_open.png"
+            mazeBlocks[playerPos[1]-1][playerPos[0]-1].classList.add('map-player-right-2')
+            mazeBlocks[playerPos[1]-1][playerPos[0]-1].classList.contains('map-wall') ? imageRight2.src = "images/2_closed.png" : imageRight2.src = "images/2_open.png"
+            mazeBlocks[playerPos[1]-1][playerPos[0]-2].classList.add('map-player-right-3')
+            mazeBlocks[playerPos[1]+2][playerPos[0]-2].classList.contains('map-wall') ? imageRight3.src = "images/3_closed.png" : imageRight3.src = "images/3_open.png"
         }        
     }
 
@@ -104,18 +148,27 @@ document.addEventListener('DOMContentLoaded', () => {
             mazeBlocks[playerPos[1]-1][playerPos[0]].classList.remove('map-player-left-1')
             mazeBlocks[playerPos[1]-1][playerPos[0]+1].classList.remove('map-player-left-2')
             mazeBlocks[playerPos[1]-1][playerPos[0]+2].classList.remove('map-player-left-3')
+            mazeBlocks[playerPos[1]+1][playerPos[0]].classList.remove('map-player-right-1')
+            mazeBlocks[playerPos[1]+1][playerPos[0]+1].classList.remove('map-player-right-2')
+            mazeBlocks[playerPos[1]+1][playerPos[0]+2].classList.remove('map-player-right-3')
         } else if (playerDir == "S") {
             mazeBlocks[playerPos[1]+1][playerPos[0]].classList.remove('map-player-front')
             mazeBlocks[playerPos[1]+2][playerPos[0]].classList.remove('map-player-front-2')
             mazeBlocks[playerPos[1]][playerPos[0]+1].classList.remove('map-player-left-1')
             mazeBlocks[playerPos[1]+1][playerPos[0]+1].classList.remove('map-player-left-2')
             mazeBlocks[playerPos[1]+2][playerPos[0]+1].classList.remove('map-player-left-3')
+            mazeBlocks[playerPos[1]][playerPos[0]-1].classList.remove('map-player-right-1')
+            mazeBlocks[playerPos[1]+1][playerPos[0]-1].classList.remove('map-player-right-2')
+            mazeBlocks[playerPos[1]+2][playerPos[0]-1].classList.remove('map-player-right-3')
         } else if (playerDir == "W") {
             mazeBlocks[playerPos[1]][playerPos[0]-1].classList.remove('map-player-front')
             mazeBlocks[playerPos[1]][playerPos[0]-2].classList.remove('map-player-front-2')
             mazeBlocks[playerPos[1]+1][playerPos[0]].classList.remove('map-player-left-1')
             mazeBlocks[playerPos[1]+1][playerPos[0]-1].classList.remove('map-player-left-2')
             mazeBlocks[playerPos[1]+1][playerPos[0]-2].classList.remove('map-player-left-3')
+            mazeBlocks[playerPos[1]-1][playerPos[0]].classList.remove('map-player-right-1')
+            mazeBlocks[playerPos[1]-1][playerPos[0]-1].classList.remove('map-player-right-2')
+            mazeBlocks[playerPos[1]-1][playerPos[0]-2].classList.remove('map-player-right-3')
         }     
     }
 
@@ -275,6 +328,5 @@ document.addEventListener('DOMContentLoaded', () => {
             mapPlayerFront()
         }
     })
-
 
 })
