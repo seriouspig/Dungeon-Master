@@ -64,8 +64,18 @@ body {
     border: 2px white solid;
 }
 
+.button:target {
+    background-color: black;
+}
+
 .button:hover {
     background-color: rgb(165, 65, 47);
+}
+
+
+
+.turnRight {
+    transform: scale(-1, 1);
 }
 
 .backward {
@@ -109,6 +119,12 @@ body {
     width: 10px;
     height: 10px;
     background-color: red;
+}
+
+.map-player-front {
+    width: 10px;
+    height: 10px;
+    background-color: yellow;
 }
 
 

@@ -52,8 +52,17 @@ document.addEventListener('DOMContentLoaded', () => {
         mazeBlocks[playerPos[0]][playerPos[1]].classList.remove('map-player')
     }
 
+    function removePlayerFront() {
+        mazeBlocks[playerPos[0]-1][playerPos[1]].classList.remove('map-player-front')
+    }
+
+    function mapPlayerFront() {
+        mazeBlocks[playerPos[0]-1][playerPos[1]].classList.add('map-player-front')
+    }
+
     mapCreator()
     mapPlayer()
+    mapPlayerFront()
 
     console.log(mazeBlocks)
     console.log(forwardBtn)
@@ -61,9 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
     forwardBtn.addEventListener('click', () => {
         if (!mazeBlocks[playerX-1][playerY].classList.contains('map-wall')) {
             removePlayer()
+            removePlayerFront()
             playerX --
             playerPos = [playerX, playerY]
             mapPlayer()
+            mapPlayerFront()
         }        
     })
     backBtn.addEventListener('click', () => {
