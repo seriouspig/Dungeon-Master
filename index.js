@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const backBtn = document.querySelector('.backward')
     const leftBtn = document.querySelector('.left')
     const rightBtn = document.querySelector('.right')
+    const turnLeftBtn = document.querySelector('.turnLeft')
+    const turnRightBtn = document.querySelector('.turnRight')
 
     const imagesClose = [ "wall", "turn", "closed" ]
     const mazeArr = [
@@ -21,10 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
 
     let mazeBlocks = []
-    let playerX = 9
-    let playerY = 3
+    let playerY = 9
+    let playerX = 3
     let playerPos = [playerX, playerY]
-    const directions = ['N', 'S', 'E', 'W']
+    const directions = ['N', 'E', 'S', 'W']
     let playerDir = directions[0]
 
     function mapCreator() {
@@ -45,19 +47,80 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function mapPlayer() {
-        mazeBlocks[playerPos[0]][playerPos[1]].classList.add('map-player')
+        mazeBlocks[playerPos[1]][playerPos[0]].classList.add('map-player')
     }
 
     function removePlayer() {
-        mazeBlocks[playerPos[0]][playerPos[1]].classList.remove('map-player')
+        mazeBlocks[playerPos[1]][playerPos[0]].classList.remove('map-player')
+    }
+
+
+    function mapPlayerFront() {
+        if(playerDir == "N") {
+            mazeBlocks[playerPos[1]-1][playerPos[0]].classList.add('map-player-front')
+        } else if (playerDir == "E") {
+            mazeBlocks[playerPos[1]][playerPos[0]+1].classList.add('map-player-front')
+        } else if (playerDir == "S") {
+            mazeBlocks[playerPos[1]+1][playerPos[0]].classList.add('map-player-front')
+        } else if (playerDir == "W") {
+            mazeBlocks[playerPos[1]][playerPos[0]-1].classList.add('map-player-front')
+        }        
     }
 
     function removePlayerFront() {
-        mazeBlocks[playerPos[0]-1][playerPos[1]].classList.remove('map-player-front')
+        if(playerDir == "N") {
+            mazeBlocks[playerPos[1]-1][playerPos[0]].classList.remove('map-player-front')
+        } else if (playerDir == "E") {
+            mazeBlocks[playerPos[1]][playerPos[0]+1].classList.remove('map-player-front')
+        } else if (playerDir == "S") {
+            mazeBlocks[playerPos[1]+1][playerPos[0]].classList.remove('map-player-front')
+        } else if (playerDir == "W") {
+            mazeBlocks[playerPos[1]][playerPos[0]-1].classList.remove('map-player-front')
+        }     
     }
 
-    function mapPlayerFront() {
-        mazeBlocks[playerPos[0]-1][playerPos[1]].classList.add('map-player-front')
+    function moveUp() {
+        if (!mazeBlocks[playerY-1][playerX].classList.contains('map-wall')) {
+            removePlayer()
+            removePlayerFront()
+            playerY --
+            playerPos = [playerX, playerY]
+            mapPlayer()
+            mapPlayerFront()
+        }
+    }
+
+    function moveDown() {
+        if (!mazeBlocks[playerY+1][playerX].classList.contains('map-wall')) {
+            removePlayer()
+            removePlayerFront()
+            playerY ++
+            playerPos = [playerX, playerY]
+            mapPlayer()
+            mapPlayerFront()
+        }
+    }
+
+    function moveLeft() {
+        if (!mazeBlocks[playerY][playerX-1].classList.contains('map-wall')) {
+            removePlayer()
+            removePlayerFront()
+            playerX --
+            playerPos = [playerX, playerY]
+            mapPlayer()
+            mapPlayerFront()
+        }
+    }
+
+    function moveRight() {
+        if (!mazeBlocks[playerY][playerX+1].classList.contains('map-wall')) {
+            removePlayer()
+            removePlayerFront()
+            playerX ++
+            playerPos = [playerX, playerY]
+            mapPlayer()
+            mapPlayerFront()
+        }
     }
 
     mapCreator()
@@ -68,40 +131,110 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(forwardBtn)
 
     forwardBtn.addEventListener('click', () => {
-        if (!mazeBlocks[playerX-1][playerY].classList.contains('map-wall')) {
-            removePlayer()
-            removePlayerFront()
-            playerX --
-            playerPos = [playerX, playerY]
-            mapPlayer()
-            mapPlayerFront()
-        }        
+        if (playerDir == "N") {
+            moveUp()
+        }
+        else if (playerDir == "E") {
+            moveRight()
+        }
+        else if (playerDir == "S") {
+            moveDown()
+        }
+        else if (playerDir == "W") {
+            moveLeft()
+        }             
     })
+
     backBtn.addEventListener('click', () => {
-        if (!mazeBlocks[playerX+1][playerY].classList.contains('map-wall')) {
-            removePlayer()
-            playerX ++
-            playerPos = [playerX, playerY]
-        mapPlayer()
+        if (playerDir == "N") {
+            moveDown()
         }
+        else if (playerDir == "E") {
+            moveLeft()
+        }
+        else if (playerDir == "S") {
+            moveUp()
+        }
+        else if (playerDir == "W") {
+            moveRight()
+        }           
     })
+
     leftBtn.addEventListener('click', () => {
-        if (!mazeBlocks[playerX][playerY-1].classList.contains('map-wall')) {
-            removePlayer()
-            playerY --
-            playerPos = [playerX, playerY]
-            mapPlayer()
+        if (playerDir == "N") {
+            moveLeft()
         }
+        else if (playerDir == "E") {
+            moveUp()
+        }
+        else if (playerDir == "S") {
+            moveRight()
+        }
+        else if (playerDir == "W") {
+            moveDown()
+        }  
     })
+
     rightBtn.addEventListener('click', () => {
-        if (!mazeBlocks[playerX][playerY+1].classList.contains('map-wall')) {
-            removePlayer()
-            playerY ++
-            playerPos = [playerX, playerY]
-            mapPlayer()
+        if (playerDir == "N") {
+            moveRight()
+        }
+        else if (playerDir == "E") {
+            moveDown()
+        }
+        else if (playerDir == "S") {
+            moveLeft()
+        }
+        else if (playerDir == "W") {
+            moveUp()
+        }          
+    })
+
+    turnRightBtn.addEventListener('click', () => {
+        if (playerDir == "N") {
+            removePlayerFront()
+            playerDir="E"
+            mapPlayerFront()
+        }
+        else if (playerDir == "E") {
+            removePlayerFront()
+            playerDir="S"
+            mapPlayerFront()
+        }
+        else if (playerDir == "S") {
+            removePlayerFront()
+            playerDir="W"
+            mapPlayerFront()
+        }
+        else if (playerDir == "W") {
+            removePlayerFront()
+            playerDir="N"
+            mapPlayerFront()
         }
     })
 
+    turnLeftBtn.addEventListener('click', () => {
+        if (playerDir == "N") {
+            removePlayerFront()
+            playerDir="W"
+            mapPlayerFront()
+        }
+        else if (playerDir == "E") {
+            removePlayerFront()
+            playerDir="N"
+            mapPlayerFront()
+        }
+        else if (playerDir == "S") {
+            removePlayerFront()
+            playerDir="E"
+            mapPlayerFront()
+        }
+        else if (playerDir == "W") {
+            removePlayerFront()
+            playerDir="S"
+            mapPlayerFront()
+        }
+    })
 
 
 })
